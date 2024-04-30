@@ -1,0 +1,95 @@
+/* 
+2024-Apr-27 code@codywohlers.ca - initial creation from search.wc.ca
+*/
+
+/** {
+    border: 1px red solid;
+}*/
+
+html, body {
+    /*border: 1px red solid;*/
+    font-family: sans-serif;
+    color: darkslategrey;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+code, xmp {
+    font-family: monospace;
+}
+
+table, th, td {
+    /*border: 1px red solid;*/
+}
+
+td {
+    vertical-align: middle;
+    padding-right: 10px;
+	padding-bottom: 10px;
+}
+img {
+	vertical-align: middle;
+}
+
+#title {
+    font-size: 200%;
+    color: white;
+    text-shadow: 0 0 4px #000000, 0 0 4px #000000; 
+}
+
+.center {
+	text-align: center;
+}
+
+.left-pad {
+	padding-left: 100px;
+}
+
+.small-font {
+    font-size: 80%;
+}
+
+*.shadow {
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+/* detect dark mode */
+@media (prefers-color-scheme: dark) {
+
+	body {
+		color: white;
+		background-color: #101010;
+	}
+
+	a {
+		color: deepskyblue;
+	}
+
+	a:visited {
+		color: deepskyblue;
+	}
+
+	*.shadow {
+		box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+	}
+	
+	input {
+		color: white;
+		background-color: #101010;
+	}
+
+}    
