@@ -39,7 +39,8 @@ FAVICON_URL="$URL"`echo "$DATA" |grep link |grep \"icon\" |head -n1 |grep -oe hr
 echo "favicon $FAVICON_URL"
 EXT=`echo $FAVICON_URL |sed 's/.*\.//'`
 DOMAIN=`echo "$URL" |sed 's|^https*://||' |sed 's|/$||'`
-curl -o  $DOMAIN.$EXT "$FAVICON_URL"
+#curl -o  $DOMAIN.$EXT "$FAVICON_URL"
+wget -nv -O $DOMAIN.$EXT "$FAVICON_URL"
 mv -v $DOMAIN.$EXT "$HOME/Projects/dir.wc.ca/html/img/"
 
 
