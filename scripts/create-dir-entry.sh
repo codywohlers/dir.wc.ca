@@ -39,15 +39,23 @@ DATA=$(google-chrome --incognito --headless --dump-dom "https://""$URL" 2>/dev/n
 
 
 # get favicon and save as useful filename.
-FAVICON_URL="https://""$URL"`echo "$DATA" |grep link |grep \"icon\" |head -n1 |grep -oe href=\".*\" |sed 's/"$//' |sed 's/^href="//'`
-echo "favicon $FAVICON_URL"
+FAVICON_URL=`echo "$DATA" |grep link |grep \"icon\" |head -n1 |grep -oe 'href="[^"]*' |sed 's/^href="//'`
+regex='^https://'
+if [[ ! "$FAVICON_URL" =~ $regex ]] ;then 
+	FAVICON_URL="https://$URL/"`echo "$FAVICON_URL"`
+fi
+echo "favicon = $FAVICON_URL"
 EXT=`echo $FAVICON_URL |sed 's/.*\.//'`
 if [ "$EXT" == "png" ] || [ "$EXT" == "ico" ] ;then
 	#curl -o  $URL.$EXT "$FAVICON_URL"
 	wget -nv -O $URL.$EXT "$FAVICON_URL"
-	mv -v $URL.$EXT "$HOME/Projects/dir.wc.ca/html/img/"
+	if [ $? = 0 ] ;then
+		mv -iv $URL.$EXT "$HOME/Projects/dir.wc.ca/html/img/"
+	else
+		echo "favicon download error" >&2
+	fi
 else
-	echo "favicon extension unknown, not downloading" >&2
+	echo "favicon extension \"$EXT\" unknown, not downloading" >&2
 fi
 
 
@@ -63,8 +71,10 @@ OUT="<tr><td class=\"center\"><a href=\"https://$URL\"><img src=\"../../img/$URL
 	<td class=\"small-font left-pad\"><span title=\"$COUNTRY_NAME\">$COUNTRY_FLAG</span> $URL</td>
 </tr>"
 
+echo
 echo "$OUT"
 echo "$OUT" |xclip -selection clip-board
-echo "Copied to clipboard."
+echo
+echo "HTML copied to clipboard."
 
 
