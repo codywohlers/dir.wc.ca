@@ -58,9 +58,9 @@ COUNTRY_NAME=`cat "/media/mammoth/library/data/country-code-names.txt" |grep "^$
 COUNTRY_FLAG=`cat "/media/mammoth/library/data/country-code-flags.txt" |grep "^$COUNTRY_CODE" |sed "s/^$COUNTRY_CODE //"`
 
 
-OUT="<tr><td class=\"center\"><a href=\"https://$URL\"><img src=\"../../img/$DOMAIN.$EXT\" height=50></a> </td>
+OUT="<tr><td class=\"center\"><a href=\"https://$URL\"><img src=\"../../img/$URL.$EXT\" height=50></a> </td>
     <td><a href=\"https://$URL\">$NAME</a></td>
-	<td class=\"small-font left-pad\"><span title=\"$COUNTRY_NAME\">$COUNTRY_FLAG</span> $DOMAIN</td>
+	<td class=\"small-font left-pad\"><span title=\"$COUNTRY_NAME\">$COUNTRY_FLAG</span> $URL</td>
 </tr>"
 
 echo "$OUT"
