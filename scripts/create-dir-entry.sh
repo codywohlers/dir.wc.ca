@@ -65,7 +65,8 @@ fi
 
 
 ROOT_DOMAIN=`echo "$DOMAIN" |sed 's/^[^.]*\.\([^.]*\.\)/\1/'`
-COUNTRY_CODE=`whois "$ROOT_DOMAIN" |grep -im1 country | grep -o [A-Z][A-Z]$`
+echo "root domain = $ROOT_DOMAIN"
+COUNTRY_CODE=`whois "$ROOT_DOMAIN" |grep -im1 country |sed 's/[ \t]*$//' |grep -o [A-Z][A-Z]$`
 #COUNTRY_CODE="US"
 echo "country = $COUNTRY_CODE"
 
