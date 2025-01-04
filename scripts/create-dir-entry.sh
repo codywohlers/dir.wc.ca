@@ -7,7 +7,7 @@
 # - get country
 # - output html
 
-# 2025-Jan-03 code@codwyohlers.ca - changed argument to not need https
+# 2025-Jan-03 code@codwyohlers.ca - changed argument to not need https.  added svg to allowed favicon extensions
 # 2025-Jan-01 code@codwyohlers.ca - initial creation.
 
 
@@ -46,7 +46,7 @@ if [[ ! "$FAVICON_URL" =~ $regex ]] ;then
 fi
 echo "favicon = $FAVICON_URL"
 EXT=`echo $FAVICON_URL |sed 's/.*\.//'`
-if [ "$EXT" == "png" ] || [ "$EXT" == "ico" ] ;then
+if [ "$EXT" == "png" ] || [ "$EXT" == "ico" ] || [ "$EXT" == "svg" ] ;then
 	#curl -o  $URL.$EXT "$FAVICON_URL"
 	wget -nv -O $URL.$EXT "$FAVICON_URL"
 	if [ $? = 0 ] ;then
