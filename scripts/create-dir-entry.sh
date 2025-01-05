@@ -10,6 +10,7 @@
 # - get country
 # - output html
 
+# 2025-Jan-05 code@codwyohlers.ca - added jpg as accepted favicon extension
 # 2025-Jan-04 code@codwyohlers.ca - add empty country check, change URL to DOMAIN, only check root domain for whois, remove trailing / from favicon
 # 2025-Jan-03 code@codwyohlers.ca - changed argument to not need https.  added svg to allowed favicon extensions
 # 2025-Jan-01 code@codwyohlers.ca - initial creation.
@@ -51,7 +52,7 @@ fi
 
 echo "favicon = $FAVICON_URL"
 EXT=`echo $FAVICON_URL |sed 's/.*\.//' |sed 's|/$||'`
-if [ "$EXT" == "png" ] || [ "$EXT" == "ico" ] || [ "$EXT" == "svg" ] ;then
+if [ "$EXT" == "png" ] || [ "$EXT" == "ico" ] || [ "$EXT" == "svg" ] || [ "$EXT" == "jpg" ] ;then
 	#curl -o  $DOMAIN.$EXT "$FAVICON_URL"
 	wget -nv -O $DOMAIN.$EXT "$FAVICON_URL"
 	if [ $? = 0 ] ;then
