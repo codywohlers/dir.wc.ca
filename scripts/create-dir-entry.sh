@@ -1,5 +1,5 @@
 #!/bin/bash
-# create-dir-entry.sh DOMAIN NAME
+# create-dir-entry.sh DOMAIN NAME [-nofavicon]
 # create html to add to dir.wc.ca for a new site
 # part of dir.wc.ca project
 #
@@ -10,6 +10,7 @@
 # - get country
 # - output html
 
+# 2025-Jan-05 code@codwyohlers.ca - added nofavicon option for when script stalls downloading site or icon.
 # 2025-Jan-05 code@codwyohlers.ca - added jpg as accepted favicon extension
 # 2025-Jan-04 code@codwyohlers.ca - add empty country check, change URL to DOMAIN, only check root domain for whois, remove trailing / from favicon
 # 2025-Jan-03 code@codwyohlers.ca - changed argument to not need https.  added svg to allowed favicon extensions
@@ -22,6 +23,7 @@ if [ -z "$2" ] ;then echo "Error: No NAME provided" >&2 ;exit 1 ;fi
 DOMAIN="$1"
 #DOMAIN="https://fast.com"
 NAME="$2"
+NO_FAVICON="$3"
 
 cd ~/tmp
 
@@ -31,6 +33,12 @@ cd ~/tmp
 
 # remove http(s):// and trailing / if present
 DOMAIN=`echo "$DOMAIN" |sed 's|^https*://||' |sed 's|/$||'`
+
+
+
+
+
+if [ -z $NO_FAVICON ] ; then
 
 # fake the user-agent so gay bot detection doesn't be gay
 #USER_AGENT='Mozilla/5.0 (Windows NT 10.0; Win64; x64) Gecko/20100101 Firefox/100.0'
@@ -63,6 +71,13 @@ if [ "$EXT" == "png" ] || [ "$EXT" == "ico" ] || [ "$EXT" == "svg" ] || [ "$EXT"
 else
 	echo "favicon extension \"$EXT\" unknown, not downloading" >&2
 fi
+
+fi # if [ -z $NO_FAVICON ]
+
+
+
+
+
 
 
 ROOT_DOMAIN=`echo "$DOMAIN" |sed 's/^[^.]*\.\([^.]*\.\)/\1/'`
