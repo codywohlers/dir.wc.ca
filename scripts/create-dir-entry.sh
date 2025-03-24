@@ -51,7 +51,7 @@ DATA=$(google-chrome --incognito --headless --dump-dom "https://""$DOMAIN" 2>/de
 #DATA="$(cat "$1")"
 
 
-# get favicon and save as useful filename.
+# get favicon and save as useful filename.  TODO handle ? arguments at the end.
 FAVICON_URL=`echo "$DATA" |grep link |grep \"icon\" |head -n1 |grep -oe 'href="[^"]*' |sed 's/^href="//'`
 regex='^https://'
 if [[ ! "$FAVICON_URL" =~ $regex ]] ;then 
